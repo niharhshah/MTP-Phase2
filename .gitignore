@@ -3,7 +3,7 @@ Images/
 CMakeFiles/
 cmake_*
 CMakeCache*
-MakeFile
+Makefile
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
