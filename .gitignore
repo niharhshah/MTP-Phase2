@@ -1,6 +1,9 @@
 #Directories
 Images/
-
+CMakeFiles/
+cmake_*
+CMakeCache*
+MakeFile
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
