@@ -4,6 +4,7 @@ CMakeFiles/
 cmake_*
 CMakeCache*
 Makefile
+Calibration/*/CalibrationFiles
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

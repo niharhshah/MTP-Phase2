@@ -15,7 +15,6 @@ IMPORTANT: AT ANT TIME
 (Delta + mspeed) <12000
 '''
 
-from msilib.schema import Error
 from roboclaw_3 import Roboclaw
 from time import sleep
 address = 0x80
