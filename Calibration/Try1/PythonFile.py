@@ -1,5 +1,6 @@
 from roboclaw_3 import Roboclaw
 from datetime import datetime
+from time import sleep 
 address = 0x80
 debug = 0
 rc = Roboclaw("\dev\ttyUSB0",115200)
