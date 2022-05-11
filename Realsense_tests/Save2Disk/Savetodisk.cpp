@@ -33,7 +33,7 @@ int main(int argc, char * argv[]) try
     pipe.start();
 
     // Capture 30 frames to give autoexposure, etc. a chance to settle
-    // for (auto i = 0; i < 30; ++i) pipe.wait_for_frames();
+    for (auto i = 0; i < 30; ++i) pipe.wait_for_frames();
 
     // Wait for the next set of frames from the camera. Now that autoexposure, etc.
     // has settled, we will write these to disk
