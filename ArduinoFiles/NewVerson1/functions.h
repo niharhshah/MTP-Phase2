@@ -13,8 +13,8 @@ void stop();
 void encoder1A();
 
 // externs
-extern long long encoder1a;
-extern long long encoder2a;
+extern unsigned long encoder1a;
+extern unsigned long encoder2a;
 extern bool m1,m2;
 extern int nums[10];
 extern int nums2[10];
@@ -77,7 +77,7 @@ void encoder1A()
     noww = micros();
     timee = abs(noww - pastt);
     pastt = noww;
-    // Serial.println(timee);
+    // Serial.println("Here 1");
     nums[_eye] = (timee);
     _eye++;
     if(_eye>=10)
@@ -90,10 +90,10 @@ void encoder2A()
     unsigned long noww2;
     encoder2a++;
      noww2 = micros();
-    timee2 = abs(noww2 - pastt);
+    timee2 = abs(noww2 - pastt2);
     pastt2 = noww2;
-    // Serial.println(timee);
-    nums2[_eye2] = (timee);
+    // Serial.println("Here Bitxhes");
+    nums2[_eye2] = (timee2);
     _eye2++;
     if(_eye2>=10)
       _eye2 = 0;
