@@ -1,0 +1,22 @@
+This is user Manual for New version.
+This just includes API calls.
+
+All speeds are in CPS
+
+Default Speed = 2000
+Delta = 100
+
+***All the functions are called with single characters. ***
+*** You can always club commands to make complex commands**
+*** Example 331 => Starts motor 1 with speed Default + 2xDelta ***
+
+0: Stop M1 and M2 motors.
+1: Run M1 with default speed. (Default Speed = 2000) 
+2: Run M2 with default speed. (Default Speed = 2000) 
+12: Run M1 and M2 with Default speed. 
+3: Increase M1 Default Speed
+4: Decrease M1 Default Speed
+5: Increase M2 Default Speed
+6: Decrease M2 Default Speed
+7: Discard updated Default Speed. (New Default Speed = 2000)
+E: Send back Encoder counts (Encoder2,Encoder1) [M2 is on Left so.]
