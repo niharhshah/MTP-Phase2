@@ -115,6 +115,17 @@ void loop() {
           Serial.print(" ");
           Serial.println(encoder1a);
         }
+      if(q == 'R')
+        {
+          encoder1a = 0;
+          encoder2a = 0;
+        }
+      if(q == 'S')
+        {
+          Serial.print(cps2);
+          Serial.print(" ");
+          Serial.println(cps1);
+        }
     }
 }
 

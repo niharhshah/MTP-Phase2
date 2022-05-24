@@ -19,4 +19,6 @@ Delta = 100
 5: Increase M2 Default Speed
 6: Decrease M2 Default Speed
 7: Discard updated Default Speed. (New Default Speed = 2000)
-E: Send back Encoder counts (Encoder2,Encoder1) [M2 is on Left so.]
+E: Send back Encoder counts (Encoder2 Encoder1) [M2 is on Left so.]
+R: Resets all things to 0
+S: Send back current CPS speed. (CPS2 CPS1) 
