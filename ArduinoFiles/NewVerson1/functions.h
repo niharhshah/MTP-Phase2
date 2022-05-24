@@ -25,6 +25,10 @@ void stop()
 {
     m1 = 0;
     m2 = 0;
+    digitalWrite(12, HIGH);
+    digitalWrite(8, HIGH);
+    digitalWrite(9, HIGH);
+    digitalWrite(13, HIGH);
     for(int pee = 0 ; pee < 10 ; pee++)
       nums[pee] = 0;
 }
@@ -42,8 +46,8 @@ void give_speed(char M , int speed, bool direction)
     }
     else
     {
-      digitalWrite(13, LOW);
-      digitalWrite(12, HIGH);
+      digitalWrite(13, HIGH);
+      digitalWrite(12, LOW);
     }
   }
   if (M == 2)
@@ -51,12 +55,12 @@ void give_speed(char M , int speed, bool direction)
     m2=1; 
     if (direction)
     {
-      digitalWrite(9, HIGH);
+      digitalWrite(7, HIGH);
       digitalWrite(8, LOW);
     }
     else
     {
-      digitalWrite(9, LOW);
+      digitalWrite(7, LOW);
       digitalWrite(8, HIGH);
     }
   } 

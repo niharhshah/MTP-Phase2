@@ -10,8 +10,7 @@
   Pin  2  M1 Encoder
 
   Commands
-  MNxxx N'th Motor speed N=<1,2>
-
+  Blue Marked Motor is M2
   ----------------------------------------*/
 char m1a = 2;
 char m2a = 3;
@@ -27,7 +26,8 @@ unsigned long encoder1a = 0;
 unsigned long encoder2a = 0;
 
 bool default_dir = 0;
-int defaultSpeed = 2000; //Give Speed in cps1
+int defaultSpeed2 = 2000; //Give Speed in cps
+int defaultSpeed = 2000; //Give Speed in cps
 int timer1_counter;
 int nums[10];
 int nums2[10];
@@ -47,9 +47,9 @@ double kp_1 = 0.11;
 double ki_1 = 0.08;
 double kd_1 = 0.01;
 
-double kp_2 = 0.11;
-double ki_2 = 0.08;
-double kd_2 = 0.01;
+double kp_2 = 0.36;
+double ki_2 = 0.03;
+double kd_2 = 0.06;
 
 
 void setup() {
@@ -79,7 +79,7 @@ void setup() {
   TCCR1B |= (1 << CS12);    // 256 prescaler 
   TIMSK1 |= (1 << TOIE1);   // enable timer overflow interrupt
   interrupts();     
-
+  stop();
 }
 char q;
 void loop() {
@@ -101,12 +101,13 @@ void loop() {
       if(q == '2')
         stop();
       if(q == '3')
-        defaultSpeed += 500;
+        defaultSpeed2 += 100;
       if(q == '4')
-        defaultSpeed -= 500;
+        defaultSpeed2 -= 100;
       if(q == '5')
-        Serial.println(kp_1);
-      
+        kp_2 += 0.01;
+      if(q == '6')
+        kp_2 -= 0.01;
 
     }
 }
@@ -154,7 +155,7 @@ ISR(TIMER1_OVF_vect)        // interrupt service routine - tick every 0.1sec
   }
   
   if (m2){
-    e_speed2 = defaultSpeed - cps2;
+    e_speed2 = defaultSpeed2 - cps2;
     pwm_pulse2 = e_speed2*kp_2 + e_speed_sum2*ki_2 + (e_speed2 - e_speed_pre2)*kd_2;
     e_speed_pre2 = e_speed2;  //save last (previous) error
     e_speed_sum2 += e_speed2; //sum of error
@@ -168,11 +169,13 @@ ISR(TIMER1_OVF_vect)        // interrupt service routine - tick every 0.1sec
     pwm_pulse2 = 0;
   }
   
-  //update new speed
+  //Serial Plotter 
+  // Serial.print("Error in Speed M2");
   Serial.print(e_speed2);
+  // Serial.println(",Min:0,Max:100");
   Serial.print("\t");
-  // Serial.print(pwm_pulse);
-  // Serial.print("\t");
+  Serial.print(defaultSpeed2);
+  Serial.print("\t");
   Serial.println(cps2);
 
  // Motor 2
