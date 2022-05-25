@@ -18,7 +18,6 @@ extern unsigned long encoder2a;
 extern bool m1,m2;
 extern int nums[10];
 extern int nums2[10];
-extern float cps;
 
 
 void stop()
@@ -28,9 +27,7 @@ void stop()
     digitalWrite(12, HIGH);
     digitalWrite(8, HIGH);
     digitalWrite(9, HIGH);
-    digitalWrite(13, HIGH);
-    for(int pee = 0 ; pee < 10 ; pee++)
-      nums[pee] = 0;
+    digitalWrite(13, HIGH);     
 }
 
 void give_speed(char M , int speed, bool direction)
