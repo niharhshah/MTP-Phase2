@@ -35,7 +35,7 @@ void stop()
 
 void give_speed(char M , int speed, bool direction)
 {
-  Serial.println(M);
+//  Serial.println(M);
   if (M == 1)
   {
     m1 = 1;
