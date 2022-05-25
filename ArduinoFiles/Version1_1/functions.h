@@ -4,7 +4,7 @@ Functions.h
 This has functionsused in the main ino file. 
 
 */
-#include "arduino.h"
+//#include "arduino.h"
 // Functions
 
 int str_to_int(char *P);
@@ -24,10 +24,10 @@ void stop()
 {
     m1 = 0;
     m2 = 0;
-    digitalWrite(12, HIGH);
-    digitalWrite(8, HIGH);
-    digitalWrite(9, HIGH);
-    digitalWrite(13, HIGH);     
+    digitalWrite(12, LOW);
+    digitalWrite(8, LOW);
+    digitalWrite(9, LOW);
+    digitalWrite(13, LOW);     
 }
 
 void give_speed(char M , int speed, bool direction)
@@ -38,13 +38,13 @@ void give_speed(char M , int speed, bool direction)
     m1 = 1;
     if (direction)
     {
-      digitalWrite(12, HIGH);
-      digitalWrite(13, LOW);
+      digitalWrite(12, LOW);
+      digitalWrite(13, HIGH);
     }
     else
     {
-      digitalWrite(13, HIGH);
-      digitalWrite(12, LOW);
+      digitalWrite(12, HIGH);
+      digitalWrite(13, LOW);
     }
   }
   if (M == 2)

@@ -56,7 +56,7 @@ double kd_2 = 0.06;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(9600);
   // Motor Pin Map
   pinMode(m1p, OUTPUT); // M1 Power
   pinMode(m2p, OUTPUT); // M2 Power
@@ -81,7 +81,7 @@ void setup() {
   TCCR1B |= (1 << CS12);    // 256 prescaler
   TIMSK1 |= (1 << TOIE1);   // enable timer overflow interrupt
   interrupts();
-  stop();
+//  stop();
 }
 char q;
 void loop() {
@@ -90,7 +90,8 @@ void loop() {
   while (Serial.available() > 0)
   {
     q = Serial.read();
-    if (q == '0')
+//    Serial.println(q);
+    if (q == '8')
       stop();
     if (q == '1')
       give_speed(1, defaultSpeed, default_dir);
