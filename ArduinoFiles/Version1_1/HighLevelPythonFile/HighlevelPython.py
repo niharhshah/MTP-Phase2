@@ -8,7 +8,7 @@ usb.close()
 print("Port closed")
 usb.open()
 print("Port Opened")
-sleep(0.5)
+sleep(0.5) #  Wait for the serial communication to begin
 # except:
 #     print("Please Connect USB device default address is /dev/ttyUSB0")
 #     exit()
