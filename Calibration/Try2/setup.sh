@@ -1,8 +1,8 @@
 #!/bin/bash
 rm CalibrationFiles/Depth/*
 rm CalibrationFiles/Color/*
-echo "0 0 0 0" > CalibrationFiles/OdemData.txt
-for i in {0..12}
+echo "0 0 1 0" > CalibrationFiles/OdemData.txt
+for i in {0..2}
 do
 	rs-save-to-disk
 	python3 PythonFile.py

@@ -12,7 +12,7 @@
   Commands
   Blue Marked Motor is M2
   ----------------------------------------*/
-#define reset_def 2000
+#define reset_def 1000
 #define delt 100
 char m1a = 2;
 char m2a = 3;
@@ -28,8 +28,8 @@ unsigned long encoder1a = 0;
 unsigned long encoder2a = 0;
 
 bool default_dir = 0;
-int defaultSpeed2 = 2000; //Give Speed in cps
-int defaultSpeed = 2000; //Give Speed in cps
+int defaultSpeed2 = 850; //Give Speed in cps
+int defaultSpeed = 1000; //Give Speed in cps
 int timer1_counter;
 int nums[10];
 int nums2[10];
@@ -46,13 +46,12 @@ double e_speed_sum2 = 0;  //sum error of speed
 double pwm_pulse2 = 0;     //this value is 0~255
 
 double kp_1 = 0.11;
-double ki_1 = 0.08;
-double kd_1 = 0.01;
+double ki_1 = 0.03;
+double kd_1 = 0.001;//.01;
 
-double kp_2 = 0.36;
+double kp_2 = 0.10;
 double ki_2 = 0.03;
-double kd_2 = 0.06;
-
+double kd_2 = 0;//06;
 
 void setup() {
   // put your setup code here, to run once:
@@ -166,10 +165,10 @@ ISR(TIMER1_OVF_vect)        // interrupt service routine - tick every 0.1sec
     if (e_speed_sum < -4000) e_speed_sum = -4000;
   }
   else {
-    e_speed = 0;
-    e_speed_pre = 0;
-    e_speed_sum = 0;
-    pwm_pulse = 0;
+//    e_speed = 0;
+//    e_speed_pre = 0;
+//    e_speed_sum = 0;
+//    pwm_pulse = 0;
     for (int pee = 0 ; pee < 10 ; pee++)
       nums[pee] = 0;
   }
@@ -183,10 +182,10 @@ ISR(TIMER1_OVF_vect)        // interrupt service routine - tick every 0.1sec
     if (e_speed_sum2 < -4000) e_speed_sum2 = -4000;
   }
   else {
-    e_speed2 = 0;
-    e_speed_pre2 = 0;
-    e_speed_sum2 = 0;
-    pwm_pulse2 = 0;
+//    e_speed2 = 0;
+//    e_speed_pre2 = 0;
+//    e_speed_sum2 = 0;
+//    pwm_pulse2 = 0;
     for (int pee = 0 ; pee < 10 ; pee++)
       nums2[pee] = 0;
   }
