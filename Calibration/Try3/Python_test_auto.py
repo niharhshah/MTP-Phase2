@@ -3,41 +3,23 @@ import os
 from time import sleep
 from time import time
 #the Important Variables
-<<<<<<< HEAD
-iterations = 15
-
-def capture(pee):
-    os.system("rs-save-to-disk")
-    os.rename("rs-save-to-disk-output-Depth.png","Depth-"+str(pee))
-    os.rename("rs-save-to-disk-output-Color.png","Color-"+str(pee))
-=======
 iterations = 100
 
 def capture(pee):
     os.system("rs-save-to-disk")
     os.rename("rs-save-to-disk-output-Depth.png","Depth-"+str(pee)+".png")
-    os.rename("rs-save-to-disk-output-Color.png",str(pee)".png")
->>>>>>> 99af8f37d9a29a0d7ee16c89a3db31b1a074aa08
+    os.rename("rs-save-to-disk-output-Color.png",str(pee)+".png")
 
 def finallly():
     os.system("rm *.csv")
     os.system("mv Depth-* CalibrationFiles/Depth/")
-<<<<<<< HEAD
-    os.system("mv Color-* CalibrationFiles/Color/")
-=======
     os.system("mv *.png CalibrationFiles/Color/")
->>>>>>> 99af8f37d9a29a0d7ee16c89a3db31b1a074aa08
-
 
 # Setup. 
 os.system("echo \"0 0 1 0\" > CalibrationFiles/OdemData.txt")
 # Reading the last data not needed as the Arduino is not resetting.
 odoWrite = open("CalibrationFiles/OdemData.txt", "a")
-<<<<<<< HEAD
-usb = serial.Serial("/dev/ttyUSB0",9600)
-=======
 usb = serial.Serial("/dev/ttyUSB0",115200)
->>>>>>> 99af8f37d9a29a0d7ee16c89a3db31b1a074aa08
 usb.close()
 print("Port closed")
 usb.open()
@@ -58,13 +40,8 @@ while(curr_iteration < iterations):
             flag = 0
             M1_encr = 0
             M2_encr = 0
-<<<<<<< HEAD
-            usb.write(b"1")
-            sleep(0.1)
-=======
             usb.write(b"9")
             sleep(0.05)
->>>>>>> 99af8f37d9a29a0d7ee16c89a3db31b1a074aa08
             usb.write(b"E")
             encoders = usb.read_until()
             # print(encoders)
@@ -83,10 +60,6 @@ while(curr_iteration < iterations):
             odoWrite.write(str_enc2 + " "+ str_enc1 + " 0 " + str(curr_iteration)+"\n")
         raise KeyboardInterrupt
     except KeyboardInterrupt:
-<<<<<<< HEAD
-        curr_iteration += 1
-        print("Capturing")
-=======
         str_enc1 = ""
         str_enc2 = ""
         flag = 0
@@ -94,7 +67,6 @@ while(curr_iteration < iterations):
         print("Capturing")
         usb.write(b"8")
         sleep(0.01)
->>>>>>> 99af8f37d9a29a0d7ee16c89a3db31b1a074aa08
         usb.write(b"E")
         encoders = usb.read_until()
         # print(encoders)
@@ -108,13 +80,8 @@ while(curr_iteration < iterations):
                     else:
                         str_enc2 += str(i-48)
         print("Saving The file...")
-<<<<<<< HEAD
-        usb.write(b"8")
-        # odoWrite.write(str(M2_encr) + " "+ str(M1_encr) + " 1 " + str(curr_iteration)+"\n")
-=======
         # odoWrite.write(str(M2_encr) + " "+ str(M1_encr) + " 1 " + str(curr_iteration)+"\n")
         print(str_enc2 + " "+ str_enc1 + " 1 " + str(curr_iteration)+"\n")
->>>>>>> 99af8f37d9a29a0d7ee16c89a3db31b1a074aa08
         odoWrite.write(str_enc2 + " "+ str_enc1 + " 1 " + str(curr_iteration)+"\n")
         capture(curr_iteration)
         # break
