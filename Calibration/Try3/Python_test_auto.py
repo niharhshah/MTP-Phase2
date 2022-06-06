@@ -1,9 +1,9 @@
 import serial
 import os
 from time import sleep
-
+from time import time
 #the Important Variables
-iterations = 50
+iterations = 15
 
 def capture(pee):
     os.system("rs-save-to-disk")
@@ -33,30 +33,33 @@ str_enc = ""
 flag = 0
 while(curr_iteration < iterations):
     print(curr_iteration)
+    t_end = time() + 1
     try:
-        str_enc1 = ""
-        str_enc2 = ""
-        flag = 0
-        M1_encr = 0
-        M2_encr = 0
-        usb.write(b"1")
-        sleep(0.1)
-        usb.write(b"E")
-        encoders = usb.read_until()
-        # print(encoders)
-        for i in encoders:
-            if((i>= 48 and i < 58)or i == 32):
-                if(i == 32):
-                    flag = 1
-                else:
-                    if flag:
-                        str_enc1 += str(i-48)
+        while(time() < t_end):
+            str_enc1 = ""
+            str_enc2 = ""
+            flag = 0
+            M1_encr = 0
+            M2_encr = 0
+            usb.write(b"1")
+            sleep(0.1)
+            usb.write(b"E")
+            encoders = usb.read_until()
+            # print(encoders)
+            for i in encoders:
+                if((i>= 48 and i < 58)or i == 32):
+                    if(i == 32):
+                        flag = 1
                     else:
-                        str_enc2 += str(i-48)
-        # M1_encr = int(str_enc1) + M1_enc
-        # M2_encr = int(str_enc2) + M2_enc
-        print(str_enc2,"\t",str_enc1)
-        odoWrite.write(str_enc2 + " "+ str_enc1 + " 0 " + str(curr_iteration)+"\n")
+                        if flag:
+                            str_enc1 += str(i-48)
+                        else:
+                            str_enc2 += str(i-48)
+            # M1_encr = int(str_enc1) + M1_enc
+            # M2_encr = int(str_enc2) + M2_enc
+            print(str_enc2,"\t",str_enc1)
+            odoWrite.write(str_enc2 + " "+ str_enc1 + " 0 " + str(curr_iteration)+"\n")
+        raise KeyboardInterrupt
     except KeyboardInterrupt:
         curr_iteration += 1
         print("Capturing")
