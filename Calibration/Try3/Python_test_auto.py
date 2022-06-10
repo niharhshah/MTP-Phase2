@@ -3,7 +3,7 @@ import os
 from time import sleep
 from time import time
 #the Important Variables
-iterations = 100
+iterations = 200
 
 def capture(pee):
     os.system("rs-save-to-disk")
@@ -24,7 +24,7 @@ usb.close()
 print("Port closed")
 usb.open()
 print("Port Opened")
-sleep(0.5) #  Wait for the serial communication to begin
+sleep(0.2) #  Wait for the serial communication to begin
 curr_iteration = 0
 capture(curr_iteration)
 encoders = ""
@@ -32,7 +32,7 @@ str_enc = ""
 flag = 0
 while(curr_iteration < iterations):
     print(curr_iteration)
-    t_end = time() + 1
+    t_end = time() + 0.5
     try:
         while(time() < t_end):
             str_enc1 = ""
@@ -41,7 +41,7 @@ while(curr_iteration < iterations):
             M1_encr = 0
             M2_encr = 0
             usb.write(b"9")
-            sleep(0.05)
+            sleep(0.025)
             usb.write(b"E")
             encoders = usb.read_until()
             # print(encoders)
