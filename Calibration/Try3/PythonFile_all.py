@@ -39,8 +39,8 @@ while(curr_iteration < iterations):
         flag = 0
         M1_encr = 0
         M2_encr = 0
-        usb.write(b"1")
-        sleep(0.1)
+        usb.write(b"9")
+        sleep(0.025)
         usb.write(b"E")
         encoders = usb.read_until()
         # print(encoders)
@@ -58,8 +58,13 @@ while(curr_iteration < iterations):
         print(str_enc2,"\t",str_enc1)
         odoWrite.write(str_enc2 + " "+ str_enc1 + " 0 " + str(curr_iteration)+"\n")
     except KeyboardInterrupt:
+        str_enc1 = ""
+        str_enc2 = ""
+        flag = 0
         curr_iteration += 1
         print("Capturing")
+        usb.write(b"8")
+        sleep(0.01)
         usb.write(b"E")
         encoders = usb.read_until()
         # print(encoders)
@@ -73,13 +78,12 @@ while(curr_iteration < iterations):
                     else:
                         str_enc2 += str(i-48)
         print("Saving The file...")
-        usb.write(b"8")
-        # odoWrite.write(str(M2_encr) + " "+ str(M1_encr) + " 1 " + str(curr_iteration)+"\n")
+        print(str_enc2 + " "+ str_enc1 + " 1 " + str(curr_iteration)+"\n")
         odoWrite.write(str_enc2 + " "+ str_enc1 + " 1 " + str(curr_iteration)+"\n")
         capture(curr_iteration)
-        # break
+        break
     except:
-        pass    
+        pass
 # odoWrite.write(str(M2_encr) + " "+ str(M1_encr) + " 1" + str(pic_no+1)+"\n")
 finallly()
 odoWrite.close()

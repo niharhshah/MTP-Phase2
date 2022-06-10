@@ -2,6 +2,8 @@ import serial
 import os
 from time import sleep
 from time import time
+from numpy.random import randint
+
 #the Important Variables
 iterations = 200
 
@@ -15,6 +17,9 @@ def finallly():
     os.system("mv Depth-* CalibrationFiles/Depth/")
     os.system("mv *.png CalibrationFiles/Color/")
 
+def random_time():
+    tr = randint(40,101)
+    return tr/100
 # Setup. 
 os.system("echo \"0 0 1 0\" > CalibrationFiles/OdemData.txt")
 # Reading the last data not needed as the Arduino is not resetting.
@@ -31,8 +36,9 @@ encoders = ""
 str_enc = ""
 flag = 0
 while(curr_iteration < iterations):
-    print(curr_iteration)
-    t_end = time() + 0.5
+    tr = random_time()
+    print(curr_iteration,tr)
+    t_end = time() + tr
     try:
         while(time() < t_end):
             str_enc1 = ""
