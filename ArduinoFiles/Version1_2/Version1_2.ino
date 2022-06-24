@@ -13,15 +13,15 @@
   Blue Marked Motor is M2
   ----------------------------------------*/
 #define reset_def 1000
-#define delt 100
+#define delt 0.01
 #define fspeed1 58
 #define fspeed2 71
 char m1a = 2;
 char m2a = 3;
 char m1p = 11;
 char m2p = 6;
-float cps1 = 0.0;
-float cps2 = 0.0;
+int cps1 = 0.0;
+int cps2 = 0.0;
 
 bool m1 = 0;
 bool m2 = 0;
@@ -30,11 +30,11 @@ unsigned long encoder1a = 0;
 unsigned long encoder2a = 0;
 
 bool default_dir = 0;
-int defaultSpeed2 = 600; //Give Speed in cps
-int defaultSpeed = 800; //Give Speed in cps
+int defaultSpeed2 = 2000; //Give Speed in cps
+int defaultSpeed = 2000; //Give Speed in cps
 int timer1_counter;
-int nums[10];
-int nums2[10];
+int nums[10] = {0,0,0,0,0,0,0,0,0,0};
+int nums2[10]= {0,0,0,0,0,0,0,0,0,0};
 
 //PID related
 double e_speed = 0;
@@ -52,8 +52,8 @@ double ki_1 = 0.03;
 double kd_1 = 0.001;//.01;
 
 double kp_2 = 0.10;
-double ki_2 = 0.03;
-double kd_2 = 0;//06;
+double ki_2 = 0.04;//.03;
+double kd_2 = 0.06;
 
 void setup() {
   // put your setup code here, to run once:
@@ -87,50 +87,50 @@ void setup() {
 char q;
 void loop() {
 
-  // Serial.println(cps1);
-  while (Serial.available() > 0)
-  {
-    q = Serial.read();
+ // Serial.println(cps1);
+ while (Serial.available() > 0)
+ {
+   q = Serial.read();
 //    Serial.println(q);
-    if (q == '8')
-      stop();
-    if (q == '1')
-      give_speed(1, defaultSpeed, default_dir);
-    if (q == '2')
-      give_speed(2, defaultSpeed2, default_dir);
-    if (q == '3')
-      defaultSpeed += delt;
-    if (q == '4')
-      defaultSpeed -= delt;
-    if (q == '5')
-      defaultSpeed2 += delt;
-    if (q == '6')
-      defaultSpeed2 -= delt;
-    if (q == '7')
-    {
-      defaultSpeed = reset_def;
-      defaultSpeed2 = reset_def;
-    }
-    if (q == '9')
-      fools();
-    if (q == 'E')
-    {
-      Serial.print(encoder2a);
-      Serial.print(" ");
-      Serial.println(encoder1a);
-    }
-    if (q == 'R')
-    {
-      encoder1a = 0;
-      encoder2a = 0;
-    }
-    if (q == 'S')
-    {
-      Serial.print(cps2);
-      Serial.print(" ");
-      Serial.println(cps1);
-    }
-  }
+   if (q == '8')
+     stop();
+   if (q == '1')
+     give_speed(1, defaultSpeed, default_dir);
+   if (q == '2')
+     give_speed(2, defaultSpeed2, default_dir);
+   if (q == '3')
+     kp_2 += delt;
+   if (q == '4')
+     kp_2 -= delt;
+   if (q == '5')
+     kd_2 += delt;
+   if (q == '6')
+     kd_2 -= delt;
+   if (q == '7')
+   {
+     defaultSpeed = reset_def;
+     defaultSpeed2 = reset_def;
+   }
+   if (q == '9')
+     fools();
+   if (q == 'E')
+   {
+     Serial.print(encoder2a);
+     Serial.print(" ");
+     Serial.println(encoder1a);
+   }
+   if (q == 'R')
+   {
+     encoder1a = 0;
+     encoder2a = 0;
+   }
+   if (q == 'S')
+   {
+     Serial.print(cps2);
+     Serial.print(" ");
+     Serial.println(cps1);
+   }
+ }
 }
 
 // ISR
@@ -195,13 +195,17 @@ ISR(TIMER1_OVF_vect)        // interrupt service routine - tick every 0.1sec
   }
 
   //Serial Plotter
-  Serial.print("PWM rn: ");
-  Serial.println(pwm_pulse2);
+  // Serial.print("PWM rn: ");
+  // Serial.println(pwm_pulse2);
   // // Serial.println(",Min:0,Max:100");
   // Serial.print("\t");
-  // Serial.print(defaultSpeed2);
-  // Serial.print("\t");
-  // Serial.println(cps2);
+  // Serial.print(cps1);
+  //  Serial.print("\t");
+  //  Serial.print(cps2);
+  //  Serial.print("\t");
+  //  Serial.print(e_speed2);
+  //  Serial.print("\t");
+  //  Serial.println(e_speed);
 
   // Motor 2
   if (pwm_pulse2 <255 & pwm_pulse2 >0) {
