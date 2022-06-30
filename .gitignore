@@ -136,3 +136,4 @@ dmypy.json
 .pyre/
 ArduinoFiles/Version1_1/out
 ArduinoFiles/Version1_1/HighLevelPythonFile/FknBackup.py
+Calibration/HighLevel/mydata.txt
