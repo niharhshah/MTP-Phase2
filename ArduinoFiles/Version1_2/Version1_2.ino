@@ -30,8 +30,8 @@ unsigned long encoder1a = 0;
 unsigned long encoder2a = 0;
 
 bool default_dir = 0;
-int defaultSpeed2 = 2000; //Give Speed in cps
-int defaultSpeed = 2000; //Give Speed in cps
+int defaultSpeed2 = 700; //Give Speed in cps
+int defaultSpeed = 1000; //Give Speed in cps
 int timer1_counter;
 int nums[10] = {0,0,0,0,0,0,0,0,0,0};
 int nums2[10]= {0,0,0,0,0,0,0,0,0,0};
