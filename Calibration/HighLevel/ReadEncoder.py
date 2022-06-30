@@ -45,7 +45,6 @@ while(1):
         str_enc1 = ""
         str_enc2 = ""
         flag = 0
-        print("Capturing")
         usb.write(b"8")
         sleep(0.01)
         usb.write(b"E")
@@ -61,7 +60,6 @@ while(1):
                     else:
                         str_enc2 += str(i-48)
         print("Saving The file...")
-        # odoWrite.write(str(M2_encr) + " "+ str(M1_encr) + " 1 " + str(curr_iteration)+"\n")
         print(str_enc2 + " "+ str_enc1 +"\n")
         odoWrite.write(str_enc2 + " "+ str_enc1 + "\n")
         break

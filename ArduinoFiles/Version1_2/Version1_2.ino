@@ -12,8 +12,8 @@
   Commands
   Blue Marked Motor is M2
   ----------------------------------------*/
-#define reset_def 1000
-#define delt 0.01
+#define reset_def 2000
+#define delt 100
 #define fspeed1 58
 #define fspeed2 71
 char m1a = 2;
@@ -30,8 +30,8 @@ unsigned long encoder1a = 0;
 unsigned long encoder2a = 0;
 
 bool default_dir = 0;
-int defaultSpeed2 = 700; //Give Speed in cps
-int defaultSpeed = 1000; //Give Speed in cps
+int defaultSpeed2 = 1500; //Give Speed in cps
+int defaultSpeed = 1500; //Give Speed in cps
 int timer1_counter;
 int nums[10] = {0,0,0,0,0,0,0,0,0,0};
 int nums2[10]= {0,0,0,0,0,0,0,0,0,0};
@@ -99,13 +99,13 @@ void loop() {
    if (q == '2')
      give_speed(2, defaultSpeed2, default_dir);
    if (q == '3')
-     kp_2 += delt;
+     defaultSpeed += delt;
    if (q == '4')
-     kp_2 -= delt;
+     defaultSpeed -= delt;
    if (q == '5')
-     kd_2 += delt;
+     defaultSpeed2 += delt;
    if (q == '6')
-     kd_2 -= delt;
+     defaultSpeed2 -= delt;
    if (q == '7')
    {
      defaultSpeed = reset_def;
